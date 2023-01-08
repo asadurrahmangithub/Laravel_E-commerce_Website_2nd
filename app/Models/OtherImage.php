@@ -26,13 +26,20 @@ class OtherImage extends Model
         }
     }
     public static function updateOtherImage($request,$id){
-        self::$otherImages = OtherImage::where('product_id',$id)->get();
-        foreach (self::$otherImages as $otherImage){
-            if (file_exists(self::$otherImage->other_image)){
-                unlink(self::$otherImage->other_image);
+
+        self::deleteOtherImage($id);
+        self::newOtherImage($request, $id);
+    }
+
+    public static function deleteOtherImage($id){
+        self::$otherImages = OtherImage::where('product_id', $id)->get();
+        foreach (self::$otherImages as $otherImage)
+        {
+            if (file_exists($otherImage->image))
+            {
+                unlink($otherImage->image);
             }
             $otherImage->delete();
         }
-        self::newOtherImage($request,$id);
     }
 }

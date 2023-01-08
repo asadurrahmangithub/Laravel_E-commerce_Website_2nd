@@ -130,14 +130,14 @@
                                                 <div class="col-sm-3">
                                                     <div class="input-group">
 
-                                                        <img id="img9" src="{{asset($otherImage->image)}}" alt="" style="height: 150px; width: 150px">
+                                                        <img src="{{asset($otherImage->image)}}" alt="" style="height: 150px; width: 150px">
 
                                                     </div>
                                                 </div>
                                             @endforeach
                                             <div class="col-sm-12 mt-5">
                                                 <div class="input-group">
-                                                    <input type="file" class="form-control" name="other_image[]" onchange="document.getElementById('img9').src = window.URL.createObjectURL(this.files[0])" accept="image/*" multiple/>
+                                                    <input type="file" class="form-control" name="other_image[]"  multiple/>
                                                 </div>
                                             </div>
                                         </div>

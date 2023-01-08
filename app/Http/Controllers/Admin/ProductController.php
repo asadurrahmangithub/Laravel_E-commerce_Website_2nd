@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function saveProduct(Request $request){
         $this->product = Product::saveProduct($request);
         OtherImage::newOtherImage($request, $this->product->id);
-        return redirect('product')->with('message','Product Section Update Successfully');
+        return redirect('manage-product')->with('message','Product Section Add Successfully');
 
     }
     public function editProduct($id){
@@ -53,11 +53,13 @@ class ProductController extends Controller
     public function updateProduct(Request $request,$id){
         Product::updateProduct($request,$id);
         if ($request->file('other_image')){
-            OtherImage::updateOtherImage($request,$id);
+            OtherImage::updateOtherImage($request, $id);
         }
         return redirect('manage-product')->with('message','Product Update Successfully');
     }
-    public function deleteProduct(Request $request){
-
+    public function deleteProduct($id){
+        Product::deleteProduct($id);
+        OtherImage::deleteOtherImage($id);
+        return back()->with('message', 'Product Info Deleted');
     }
 }
